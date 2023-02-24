@@ -63,6 +63,23 @@ class Graph:
                     if shortest_path is None or len(sp)<len(shortest_path):
                         shortest_path = sp
         return shortest_path
+    
+    def depth_first_print(self, source):
+        '''
+        Use a stack to do a depth first print of the nodes from a source node
+        '''
+        print(f'Depth first print from {source}')
+        stack = [source]
+
+        while stack:
+            cur = stack.pop()
+            if self.graph_dict.get(cur):
+                print(cur)
+                for node in self.graph_dict[cur]:
+                    stack.append(node)
+            else:
+                print('End')
+                print()
             
 routes = [
     ('Mumbai', 'Paris'),
@@ -76,11 +93,15 @@ routes = [
 g1 = Graph(routes)
 print(f'Graph dictionary - {g1.graph_dict}')
 print()
-start = input('Enter start: ')
-end = input('Enter end: ')
+#start = input('Enter start: ')
+#end = input('Enter end: ')
+start = 'Mumbai'
+end = 'New York'
 print()
 print(f'Paths between {start} and {end} :{g1.get_path(start, end)}')
 print()
 print(f'Shortest path between {start} and {end} :{g1.get_shortest_path(start, end)}')
+print()
+g1.depth_first_print('Mumbai')
 
 
