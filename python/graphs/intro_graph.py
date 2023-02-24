@@ -80,6 +80,15 @@ class Graph:
             else:
                 print('End')
                 print()
+    
+    def depth_first_print_recursive(self, source):
+        print(source)
+        if self.graph_dict.get(source):
+            for node in self.graph_dict[source]:
+                self.depth_first_print_recursive(node)
+        else:
+            print('End')
+            print()
             
 routes = [
     ('Mumbai', 'Paris'),
@@ -102,6 +111,6 @@ print(f'Paths between {start} and {end} :{g1.get_path(start, end)}')
 print()
 print(f'Shortest path between {start} and {end} :{g1.get_shortest_path(start, end)}')
 print()
-g1.depth_first_print('Mumbai')
+g1.depth_first_print_recursive('Mumbai')
 
 
