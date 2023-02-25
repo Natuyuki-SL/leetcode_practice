@@ -68,26 +68,30 @@ class Graph:
         '''
         Use a stack to do a depth first print of the nodes from a source node
         '''
-        print(f'Depth first print from {source}')
         stack = [source]
 
         while stack:
             cur = stack.pop()
+            print(cur, end=' ')
             if self.graph_dict.get(cur):
-                print(cur)
                 for node in self.graph_dict[cur]:
                     stack.append(node)
             else:
-                print('End')
                 print()
     
     def depth_first_print_recursive(self, source):
-        print(source)
+        print(source, end =' ')
         if self.graph_dict.get(source):
             for node in self.graph_dict[source]:
                 self.depth_first_print_recursive(node)
         else:
-            print('End')
+            print()
+    
+    def breadth_first_print(self, source, level=1):
+        print(f'Level: {level}')
+        if self.graph_dict.get(source):
+            for node in self.graph_dict[source]:
+                print(node, end=' ')
             print()
             
 routes = [
@@ -106,11 +110,15 @@ print()
 #end = input('Enter end: ')
 start = 'Mumbai'
 end = 'New York'
-print()
-print(f'Paths between {start} and {end} :{g1.get_path(start, end)}')
-print()
-print(f'Shortest path between {start} and {end} :{g1.get_shortest_path(start, end)}')
-print()
-g1.depth_first_print_recursive('Mumbai')
+#print()
+#print(f'Paths between {start} and {end} :{g1.get_path(start, end)}')
+# print()
+# print(f'Shortest path between {start} and {end} :{g1.get_shortest_path(start, end)}')
+# print()
+# g1.depth_first_print('Mumbai')
+# print()
+# g1.depth_first_print_recursive('Mumbai')
+# print()
+g1.breadth_first_print('Mumbai')
 
 
